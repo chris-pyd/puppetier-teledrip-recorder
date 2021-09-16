@@ -1,0 +1,26 @@
+const puppeteer = require('puppeteer');
+const browser = await puppeteer.launch()
+const page = await browser.newPage()
+const navigationPromise = page.waitForNavigation()
+
+await page.goto('https://app.teledrip.com/')
+
+await page.setViewport({ width: 1745, height: 852 })
+
+await page.waitForSelector('#id_email')
+await page.click('#id_email')
+
+await navigationPromise
+
+await page.waitForSelector('#id_password')
+await page.click('#id_password')
+
+await page.waitForSelector('#id_password')
+await page.click('#id_password')
+
+await page.waitForSelector('#content > .container > .panel > .panel-body > .btn')
+await page.click('#content > .container > .panel > .panel-body > .btn')
+
+await navigationPromise
+
+await browser.close()
